@@ -1,10 +1,9 @@
-function generateMarkdown(data) {
-  return `
-# ${data.projectTitle}
 
-![Github Picture](${data.profilepic})
+# hw
 
-email ${data.email}
+![Github Picture](https://avatars3.githubusercontent.com/u/11791361?v=4)
+
+email null
 
 ## table of contents
  * Project title
@@ -17,29 +16,25 @@ email ${data.email}
  * Questions
 
 ## project description 
-${data.description}
+
 
 ## installation
-${data.installation}
+
 
 ## usage
-${data.usage}
+
 
 ## license
-${data.license}
+MIT
 
 ## contributors
-${data.contributors}
+
 
 ## tests
-${data.tests}
+
 
 ## questions
-${data.questions}
+
 __Questions__: ask them at StackOverflow with the tag *REPO*.<br>
 [![StackOverflow](http://img.shields.io/badge/stackoverflow-REPO-blue.svg)]( http://stackoverflow.com/questions/tagged/REPO )
 
-`;
-}
-
-module.exports = generateMarkdown;

@@ -76,27 +76,21 @@ function promptUser(){
 
 async function startProgram(){
   const data = await promptUser(); 
-  const queryUrl = (githubName) => `https://api.github.com/users/${githubName}`;
+  const queryUrl = `https://api.github.com/users/${data.githubName}`;
 
-  const githubapi = {
-    
-    gitProfilePic: async function(githubName) {
-    const url = queryUrl(githubName);
-    const {data: {avatar_url}} = await axios.get(url);
-    return avatar_url;
-},
-gitEmail: async function(githubName) {
-    const url = `https://api.github.com/users/${githubName}/events/public`;
-    const res = await axios.get(url);
-    return res.data[0].payload.commits[0].author.email;
-}
 
-  }
 
-  data.avatar_url = await githubapi.gitProfilePic(data.githubName);
-  data.email = await githubapi.gitEmail(data.githubName);
+  data.profilepic = await axios.get(queryUrl).then(function(response){
+    return response.data.avatar_url;
+  })
+
+  data.email = await axios.get(queryUrl).then(function(response){
+    return response.data.email;
+  })
+
+  
   const readmemarkdown = generateMarkdown(data);
-  fs.writeFile("newReadme.md", readmemarkdown);
+  fs.writeFileSync("newReadme.md", readmemarkdown);
 }
 
 startProgram();
